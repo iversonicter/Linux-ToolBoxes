@@ -7,17 +7,17 @@
 
 # install general dependencies
 
-sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
-sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y --no-install-recommends libboost-all-dev
 
 # install blas
-sudo apt-get install libatlas-base-dev
+sudo apt-get install -y libatlas-base-dev
 
 # or install OpenBlas instead of bias
-apt-get install libopenblas-dev
+# sudo apt-get install -y libopenblas-dev
 
 # install gflag, google-glog, lmdb
-sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 
 # git clone caffe
 git clone https://github.com/BVLC/caffe.git
