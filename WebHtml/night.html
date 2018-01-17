@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>月亮</title>
+    <style>
+        @-webkit-keyframes moonmove{
+        0{transform:translate(0,0);-webkit-transform:translate(0,0)}
+        50%{transform:translate(0px,30px);-webkit-transform:translate(0px,30px)}
+        100{transform:translate(0,0);-webkit-transform:translate(0,0)}
+        }
+        .wrap{
+            width:300px;
+            height:300px;
+            background:#2d2d2d;
+            margin:30px auto;
+            position:relative;
+        }
+        .moon{
+            width:100px;
+            height:100px;
+            border-radius:100%;
+            background:#ffe400;
+            position:absolute;
+            left:90px;
+            top:83px;
+            z-index:3;
+            box-shadow:-3px 0px 10px 5px rgba(0,0,0,.3);
+            animation:moonmove 6s ease .1s infinite;
+            -webkit-animation:moonmove 6s ease .1s infinite;
+        }
+        @-webkit-keyframes cloudmove{
+        0{transform:translate(0,0);-webkit-transform:translate(0,0)}
+        50%{transform:translate(30px,0);-webkit-transform:translate(30px,0)}
+        100{transform:translate(0,0);-webkit-transform:translate(0,0)}
+        }
+        @-webkit-keyframes cloudmove2{
+        20{transform:translate(0,0) scale(1.0);-webkit-transform:translate(0,0) scale(1.0)}
+        60%{transform:translate(-20px,0) scale(0.9);-webkit-transform:translate(-20px,0) scale(0.9)}
+        100{transform:translate(0,0) scale(1.0);-webkit-transform:translate(0,0) scale(1.0)}
+        }
+        .cloud{
+            left:62px;
+            top:181px;
+            z-index:5;
+            width:50px;
+            position:absolute;
+            height:54px;
+            background:#fff3da;
+            border-radius:50px 50px 0 0;
+            animation:cloudmove 10s ease .1s infinite;
+            -webkit-animation:cloudmove 10s ease .1s infinite;
+        }
+        .cloud::before{
+            content:'';
+            width:20px;
+            height:38px;
+            background:#fff3da;
+            border-radius:50px 0 0 50px;
+            position:absolute;
+            left:-18px;
+            bottom:0;
+        }
+        .cloud::after{
+            content:'';
+            width:16px;
+            height:35px;
+            background:#fff3da;
+            border-radius:0 50px 50px 0;
+            position:absolute;
+            right:-15px;
+            bottom:0;
+        }
+        div:nth-child(4){
+            left:200px;
+            top:155px;
+            z-index:2;
+            animation:cloudmove2 10s ease .1s infinite;
+            -webkit-animation:cloudmove2 10s ease .1s infinite;}
+        .shdow{
+            width:84px;
+            height:20px;
+            border-radius:0 0 20px 20px;
+            position:absolute;
+            background:none;
+            left:44px;
+            top:215px;
+            z-index:4;
+            box-shadow:0px 7px 15px 0px rgba(0,0,0,0.5);
+            animation:cloudmove 10s ease .1s infinite;
+            -webkit-animation:cloudmove 10s ease .1s infinite;
+        }
+        div:nth-child(5){
+            left:200px;
+            top:155px;
+            z-index:1;
+            animation:cloudmove2 10s ease .1s infinite;
+            -webkit-animation:cloudmove2 10s ease .1s infinite;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="moon"></div>
+    <div class="cloud"></div>
+    <div class="shdow"></div>
+    <div class="cloud"></div>
+    <div class="shdow"></div>
+</div>
+</body>
+</html>
