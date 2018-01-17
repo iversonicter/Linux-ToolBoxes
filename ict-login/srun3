@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+"""
+   File Name: srun3.py
+      Author: Wan Ji
+      E-mail: wanji@live.com
+  Created on: Thu Aug 27 10:41:57 2015 CST
+"""
+DESCRIPTION = """
+Commandline tool for login / logout srun3000.
+"""
+
+import os
+import argparse
+import logging
+import requests
+
+
+def runcmd(cmd):
+    """ Run command.
+    """
+
+    logging.info("%s" % cmd)
+    os.system(cmd)
+
+
+def getargs():
+    """ Parse program arguments.
+    """
+
+    parser = argparse.ArgumentParser(
+        description=DESCRIPTION,
+        formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('username', type=str,
+                        help='username')
+    parser.add_argument('password', type=str,
+                        help='password')
+    parser.add_argument('--host', type=str, default="http://159.226.39.22",
+                        help='authorization host')
+    parser.add_argument('--port', type=int, default=3333,
+                        help='port number')
+    parser.add_argument("--log", type=str, default="INFO",
+                        help="log level")
+
+    return parser.parse_args()
+
+
+def login(host, port, username, password):
+    resp = requests.post(
+        "%s:%d/cgi-bin/do_login" % (host, port),
+        # "%s:%d/cgi-bin/do_logout" % (host, port),
+        {
+            'username': username,
+            'password': password,
+            'mac': "b8:76:3f:9e:85:cd",
+            'n': '99',
+            'type': '3',
+            'drop': '0',
+        })
+    if resp.status_code == 200:
+        logging.info("Login Success: %s" % resp.text)
+    else:
+        logging.info("Login Failed: %d" % resp.status_code)
+
+
+def logout(host, port, username, password):
+    pass
+
+
+def main(args):
+    """ Main entry.
+    """
+    login(args.host, args.port, args.username, args.password)
+
+
+if __name__ == '__main__':
+    args = getargs()
+    numeric_level = getattr(logging, args.log.upper(), None)
+    if not isinstance(numeric_level, int):
+        raise ValueError("Invalid log level: " + args.log)
+    logging.basicConfig(format="%(asctime)s - %(levelname)s - %(message)s",
+                        level=numeric_level)
+    main(args)
