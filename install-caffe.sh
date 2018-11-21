@@ -2,8 +2,7 @@
 
 # Author: Yongjie Wang
 # Email: yongjie.wang@ntu.edu.sg
-# This script is writen to install caffe on Ubuntu 16.04
-
+# This script is writen to install caffe on Ubuntu 16.04,anaconda python 3.5 or 3.6
 
 # install general dependencies
 
@@ -21,6 +20,9 @@ sudo apt-get install -y libatlas-base-dev
 # install gflag, google-glog, lmdb
 sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
 
+# install python=3.5 with conda
+# conda install python=3.5 or conda install python=3.6
+
 # git clone caffe
 cd third
 git clone https://github.com/BVLC/caffe.git
@@ -30,6 +32,11 @@ cd caffe
 cp ../../Makefile.config .
 
 make -j
+# if error like this "cannot find -lboost_python3" appear
+# please uncomment this command below
+# sudo ln -s /usr/lib/x86_64-linux-gnu/libboost_python-py35.so /usr/lib/x86_64-linux-gnu/liboost_python3.so 
+# sudo ldconfig
+
 make pycaffe -j
 # if you want to install caffe which support matlab, uncomment this line below
 # make matcaffe -j
@@ -39,7 +46,7 @@ echo Pycaffe>>~/.bashrc
 source ~/.bashrc
 
 # update numpy, protobuf, matplotlib
-
+pip install --upgrade pip
 pip install --upgrade numpy
 pip install --upgrate protobuf
 pip install --upgrade matplotlib
