@@ -114,8 +114,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py' 
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 
 let g:ycm_confirm_extra_conf = 0
 nnoremap <C-]> :w<CR>:YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <C-l> :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -139,3 +139,77 @@ let g:syntastic_cpp_compiler_options='-std=c++11 -stdlib=libc++' "set added c++1
 let  g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:SuperTabClosePreviewOnPopupClose = 1
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" add comment in the head of code automatically 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+autocmd BufNewFile *.c, *.h, *.hpp, *.cpp, *.sh, *.py, Makefile exec ":call SetTitle()"
+
+func SetComment()
+	call setline(1,"/*================================================================") 
+	call append(line("."), "*   ") 
+	call append(line(".")+1, "*   Filename：".expand("%:t")) 
+	call append(line(".")+2, "*   Author  ：Wang Yongjie")
+	call append(line(".")+3, "*   Date    ：".strftime("%Y%m%d")) 
+	call append(line(".")+4, "*   Email   ：yongjie.wang@ntu.edu.sg") 
+	call append(line(".")+5, "*	  Discription：") 
+	call append(line(".")+6, "*")
+	call append(line(".")+7, "================================================================*/") 
+	call append(line(".")+8, "")
+	call append(line(".")+9, "")
+endfunc
+
+
+func SetTitle()
+	if &filetype == 'python'
+		call setline(1, "\#	Filename	:	".expand("%"))
+		call setline(2, "\#	Author		:	Wang Yongjie")
+		call setline(3, "\# Email		:	yongjie.wang@ntu.edu.sg")
+		call setline(4, "\#	Date		:	".strftime("%c"))
+		call setline(5, "\# Description	:	")
+		call setline(6, "")
+	elseif &filetype == 'shell'
+		call setline(1, "\#!/bin/bash")
+		call setline(2, "\#	Filename	:	".expand("%"))
+		call setline(3, "\#	Author		:	Wang Yongjie")
+		call setline(4, "\# Email		:	yongjie.wang@ntu.edu.sg")
+		call setline(5, "\#	Date		:	".strftime("%c"))
+		call setline(6, "\# Description	:	")
+		call setline(7, "")
+	elseif &filetype == 'makefile'
+		call setline(2, "\#	Filename	:	".expand("%"))
+		call setline(3, "\#	Author		:	Wang Yongjie")
+		call setline(4, "\# Email		:	yongjie.wang@ntu.edu.sg")
+		call setline(5, "\#	Date		:	".strftime("%c"))
+		call setline(6, "\# Description	:	")
+		call setline(7, "")
+	else
+		call SetComment()
+		if expand("%:e") == 'hpp' 
+			call append(line(".")+10, "#ifndef _".toupper(expand("%:t:r"))."_H") 
+			call append(line(".")+11, "#define _".toupper(expand("%:t:r"))."_H") 
+			call append(line(".")+12, "#ifdef __cplusplus") 
+			call append(line(".")+13, "extern \"C\"") 
+			call append(line(".")+14, "{") 
+			call append(line(".")+15, "#endif") 
+			call append(line(".")+16, "") 
+			call append(line(".")+17, "#ifdef __cplusplus") 
+			call append(line(".")+18, "}") 
+			call append(line(".")+19, "#endif") 
+			call append(line(".")+20, "#endif //".toupper(expand("%:t:r"))."_H") 
+
+		elseif expand("%:e") == 'h' 
+			call append(line(".")+10, "#pragma once") 
+
+		elseif &filetype == 'c' 
+			call append(line(".")+10,"#include \"".expand("%:t:r").".h\"") 
+
+		elseif &filetype == 'cpp' 
+			call append(line(".")+10, "#include \"".expand("%:t:r").".h\"") 
+		endif
+	endif
+endfunc
