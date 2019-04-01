@@ -1,7 +1,7 @@
 opencv-python
 pandas
 scikit-learn
-seabor
+seaborn
 tensorboard
 tensorflow-gpu
 tensorflow-hub
