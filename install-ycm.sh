@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get -y install build-essential cmake
+sudo apt-get -y install build-essential cmake 
 
 # step 1: download vundle 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
