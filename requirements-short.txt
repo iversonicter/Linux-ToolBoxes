@@ -8,3 +8,7 @@ tensorflow-hub
 torch
 torchvision
 numpy
+scipy
+scikit-image
+tensorboardx
+
