@@ -67,6 +67,7 @@ set shiftwidth=4
 set laststatus=2
 set autowrite		" Automatically save before commands like :next and :make
 set hidden		" Hide buffers when they are abandoned
+set ma			" Make a buffer modifiable
 
 
 
