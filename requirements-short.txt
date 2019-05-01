@@ -11,4 +11,4 @@ numpy
 scipy
 scikit-image
 tensorboardx
-
+ete3
