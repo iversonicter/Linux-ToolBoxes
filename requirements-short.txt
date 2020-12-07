@@ -13,3 +13,4 @@ scikit-image
 tensorboardx
 ete3
 fastai
+matplotlib
