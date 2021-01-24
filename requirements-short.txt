@@ -14,3 +14,5 @@ tensorboardx
 ete3
 fastai
 matplotlib
+palettable
+brewer2mpl
