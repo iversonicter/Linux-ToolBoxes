@@ -20,7 +20,7 @@ grpcio-tools==1.15.0
 idna==2.7
 imageio==2.4.1
 imagesize==1.1.0
-jinja2==2.10
+jinja2==2.11.3
 joblib==0.13.0
 kiwisolver==1.0.1
 librosa==0.6.2
