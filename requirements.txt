@@ -9,7 +9,7 @@ click==7.0
 cloudpickle==0.6.1
 commonmark==0.5.4
 cycler==0.10.0
-dask==0.20.1
+dask==2021.10.0
 decorator==4.3.0
 docutils==0.14
 easydict==1.8
