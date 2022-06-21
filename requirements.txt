@@ -76,6 +76,6 @@ werkzeug>=0.15.3
 cython==0.29
 cffi==1.11.5
 ninja==1.8.2
-numpy==1.15.4
+numpy==1.22.0
 numpy-base==1.15.4
 pybind11==2.2.4
