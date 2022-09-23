@@ -34,7 +34,7 @@ numba==0.40.1
 opencv-python==3.4.3.18
 packaging==18.0
 pandas==0.23.4
-protobuf==3.6.1
+protobuf==3.18.3
 purepng==0.2.0
 pycocotools==2.0.0
 pydub==0.23.0
